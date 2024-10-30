@@ -15,7 +15,7 @@ const Slider = () => {
 
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0), // Changement pour regler bug (index +1)
+      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0), // Changement pour regler bug (index)
       5000
     );
   };
