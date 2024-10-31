@@ -52,6 +52,8 @@ const Slider = () => {
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
+                  readOnly
+                  // readonly pour ne pas rendre les radio-button cliquables
                 />
               ))}
             </div>
