@@ -7,28 +7,26 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = Array.isArray(data?.focus) // Changement pour régler ordre
-    ? data.focus.sort((evtA, evtB) =>
+  const byDateDesc = Array.isArray(data?.focus)
+    ? data?.focus.sort((evtA, evtB) =>
         new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
       )
     : [];
-
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0), // Changement pour regler bug (index)
+      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0),
       5000
     );
   };
-
   useEffect(() => {
     nextCard();
   });
-
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <React.Fragment key={event.title}>
+        <React.Fragment key={`slide-${event.title}`}>
           <div
+            key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -44,20 +42,14 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
-              {byDateDesc.map(
-                (
-                  evt,
-                  radioIdx // Changement pour les problèmes d'index
-                ) => (
-                  <input
-                    key={`${evt.title}_${evt.date}`}
-                    type="radio"
-                    name="radio-button"
-                    checked={index === radioIdx}
-                    // onChange à rajouter
-                  />
-                )
-              )}
+              {byDateDesc.map((ev, radioIdx) => (
+                <input
+                  key={`pagination-dot-${ev.title}`}
+                  type="radio"
+                  name="radio-button"
+                  checked={index === radioIdx}
+                />
+              ))}
             </div>
           </div>
         </React.Fragment>
