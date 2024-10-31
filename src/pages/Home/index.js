@@ -14,7 +14,7 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   const { data } = useData();
-  // creation du "last"
+  // creation du last element utilisé dans le footer
   const last = data?.events
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 1)[0];
