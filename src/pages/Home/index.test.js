@@ -26,27 +26,24 @@ describe("When Form is created", () => {
   });
 });
 
+// Nouveaux tests à implémenter
+
 describe("When a page is created", () => {
   it("a list of events is displayed", async () => {
     render(<Home />);
 
-    // Utilise getAllByText pour sélectionner tous les éléments avec le texte "Nos réalisations"
     const eventHeadings = screen.getAllByText("Nos réalisations");
 
-    // Vérifie qu'un <h2> contient le texte "Nos réalisations" (titre de la section)
     expect(eventHeadings.some((el) => el.tagName === "H2")).toBe(true);
   });
 
   it("a list of people is displayed", () => {
     render(<Home />);
 
-    // Utilise getAllByText pour sélectionner tous les éléments avec le texte "Notre équipe"
     const peopleHeadings = screen.getAllByText("Notre équipe");
 
-    // Vérifie qu'un <h2> contient le texte "Notre équipe" (titre de la section)
     expect(peopleHeadings.some((el) => el.tagName === "H2")).toBe(true);
 
-    // Vérifie que plusieurs cartes de personnes sont rendues avec les noms attendus
     expect(screen.getByText("Samira")).toBeInTheDocument();
     expect(screen.getByText("Jean-baptiste")).toBeInTheDocument();
     expect(screen.getByText("Alice")).toBeInTheDocument();
@@ -55,7 +52,6 @@ describe("When a page is created", () => {
   it("a footer is displayed", () => {
     render(<Home />);
 
-    // Vérifie la présence du footer avec les informations de contact
     expect(screen.getByText("Contactez-nous")).toBeInTheDocument();
     expect(
       screen.getByText("45 avenue de la République, 75000 Paris")
@@ -67,7 +63,6 @@ describe("When a page is created", () => {
   it("an event card, with the last event, is displayed", () => {
     render(<Home />);
 
-    // Vérifie la présence de la dernière prestation dans le footer
     expect(screen.getByText("Notre derniére prestation")).toBeInTheDocument();
   });
 });
